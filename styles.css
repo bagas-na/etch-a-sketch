@@ -19,15 +19,22 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
 }
 
 .controls {
     width: 20vw;
     min-width: 150px;
+    height: 150px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.size-display {
+    display:inline;
+    /* border-color: magenta; */
 }
 
 .grid {
@@ -41,8 +48,8 @@ body {
 }
 
 .box {
-    border-radius: calc(80px / var(--grid-length));
-    border: 1px solid red;
+    border-radius: 12%;
+    /* border: 0px; */
 }
 
 .box:hover {
