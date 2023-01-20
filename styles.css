@@ -1,5 +1,5 @@
 :root {
-    --grid-length: 32;
+    --grid-length: 16;
     --etch-color: black;
 }
 
@@ -22,6 +22,8 @@ body {
 }
 
 .controls {
+    width: 20vw;
+    min-width: 150px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,14 +31,17 @@ body {
 }
 
 .grid {
+    max-height: 85vh;
+    max-width: 85vh;
     height: 60vw;
     width: 60vw;
     display: grid;
-    grid-template-columns: repeat(var(--grid-length), 1fr);
-    grid-template-rows: repeat(var(--grid-length), 1fr);
+    grid-template-columns: repeat(var(--grid-length), auto);
+    grid-template-rows: repeat(var(--grid-length), auto);
 }
 
 .box {
+    border-radius: calc(80px / var(--grid-length));
     border: 1px solid red;
 }
 

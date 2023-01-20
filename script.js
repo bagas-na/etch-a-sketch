@@ -1,18 +1,11 @@
 const lengthSelector = document.querySelector('.grid-size');
-const gridContainer = document.querySelector('.grid');
+const gridContainer = document.getElementById('etch-a-sketch');
 const gridLength = document.querySelector(':root');
-
-console.log(gridContainer.style.gridTemplateColumns);
-
-let gridSize = 16;
-gridLength.style.setProperty('--grid-length', gridSize);
-
-console.log(lengthSelector.value);
-
-createGrid(gridSize);
+let gridBoxes = document.querySelectorAll('.box');
 
 function createGrid(gridSize) {
-    
+    gridLength.style.setProperty('--grid-length', gridSize);
+
     const box = new Array(gridSize);
     for(let i=1; i<=gridSize; i++){
         box[i] = new Array(gridSize);
@@ -22,7 +15,8 @@ function createGrid(gridSize) {
             box[i][j].setAttribute('id', `box-#${j+(i-1)*gridSize}`)
             gridContainer.appendChild(box[i][j]);
         }
-    }    
+    }
+
 }
 
 function deleteGrid() {
@@ -39,3 +33,7 @@ lengthSelector.addEventListener('input', function (e) {
     createGrid(gridSize);
 });
 
+
+
+let gridSize = 8;
+createGrid(gridSize);
