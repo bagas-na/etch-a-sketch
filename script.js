@@ -13,6 +13,10 @@ function resizeGridTo(gridLength) {
         gridContainer.appendChild(box);
     }
     setBoxBorder(gridLength);
+
+    gridSizeDisplay.forEach((display) => {
+        display.innerHTML = gridLength;
+    });
 }
 
 function boxProperty (box) {
@@ -30,23 +34,24 @@ function setBoxBorder(gridLength) {
         box.className = 'box';
         boxNumber = box.getAttribute('data-box');
         if(+boxNumber === 1) {
-            console.log(`Box Number: ${boxNumber}`);
             box.classList.add('top-left');}
         else if(+boxNumber === +gridLength) {
-            console.log(`Box Number: ${boxNumber}`);
             box.classList.add('top-right');}
         else if(+boxNumber === (gridLength-1)*gridLength+1) {
-            console.log(`Box Number: ${boxNumber}`);
             box.classList.add('bottom-left');}
         else if(+boxNumber === gridLength*gridLength) {
-            console.log(`Box Number: ${boxNumber}`);
             box.classList.add('bottom-right');}
     })
 }
 
 function etch(e) {
-    if (e.type === 'mouseover' && mouseDown === true) {
-        e.target.style.backgroundColor = "black";}
+    if (e.type === 'mouseover' && !mouseDown) {
+        return;
+    } else if (isEraser) {
+        e.target.style.backgroundColor = "var(--etch-background)";
+    } else {
+        e.target.style.backgroundColor = "var(--etch-color)";
+    }
 }
 
 function deleteGrid() {
@@ -67,9 +72,10 @@ let isShading = false;
 const sizeSelector = document.querySelector('.size-selector');
 const gridContainer = document.getElementById('etch-a-sketch');
 const CSSVariable = document.querySelector(':root');
-const rainbowBtn = document.getElementById('rainbow-btn')
-const eraserBtn = document.getElementById('eraser-btn')
-const shadingBtn = document.getElementById('shading-btn')
+const gridSizeDisplay = document.querySelectorAll('.size-display');
+const rainbowBtn = document.getElementById('rainbow-btn');
+const eraserBtn = document.getElementById('eraser-btn');
+const shadingBtn = document.getElementById('shading-btn');
 const clearBtn = document.getElementById('clear-btn');
 const resetBtn = document.getElementById('reset-btn');
 let gridBoxes = document.querySelectorAll('.grid > .box');
@@ -122,7 +128,6 @@ shadingBtn.addEventListener('click', function(e) {
 
 
 sizeSelector.addEventListener('input', function (e) {
-    console.log(e.target.value);
     gridSize = e.target.value;
     resizeGridTo(gridSize)
 
@@ -135,7 +140,6 @@ clearBtn.addEventListener('mousedown', function(e) {
 }, {passive: true});
 
 resetBtn.addEventListener('mousedown', function(e) {
-    console.log(sizeSelector.value);
     sizeSelector.value = defaultGridSize;
     gridSize = sizeSelector.value;
     deleteGrid();

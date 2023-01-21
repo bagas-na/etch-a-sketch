@@ -1,7 +1,7 @@
 :root {
     --grid-length: 16;
     --dark-primary-color: hsl(0, 0%, 30%);
-    --primary-color: hsl(0, 0%, 47%);
+    --primary-color: hsl(0, 0%, 52%);
     --light-primary-color:hsl(0, 0%, 75%);
     --secondary-color: #87cdd1;
     --light-secondary-color: #88dbd3;
@@ -34,13 +34,20 @@ body {
 }
 
 .controls {
-    border-top-left-radius: 2;
+    margin: 0 20px 0 0;
+    padding: 20px 0;
+    border-radius: 10px;
+    background-color: var(--background-color);
     width: 20vw;
     min-width: 150px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.controls p {
+    margin: 10px 0 0 0;
 }
 
 .size-display {
