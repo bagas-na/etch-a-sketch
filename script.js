@@ -12,6 +12,7 @@ function resizeGridTo(gridLength) {
         boxProperty(box);
         gridContainer.appendChild(box);
     }
+
     setBoxBorder(gridLength);
 
     gridSizeDisplay.forEach((display) => {
@@ -22,8 +23,6 @@ function resizeGridTo(gridLength) {
 function boxProperty (box) {
     box.classList.add('box');
     box.setAttribute('data-box', `${gridContainer.childElementCount+1}`)
-    // box.setAttribute("draggable", false)
-
     box.addEventListener('mouseover', etch, {passive: true})
     gridContainer.appendChild(box);
 }
@@ -49,12 +48,19 @@ function etch(e) {
         return;
     } else if (isEraser) {
         e.target.style.backgroundColor = "var(--etch-background)";
-    } else if (isRainbow) {
+    } else if (isRainbow && !isShading) {
         const randomR = Math.floor(Math.random() * 256)
         const randomG = Math.floor(Math.random() * 256)
         const randomB = Math.floor(Math.random() * 256)
         e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`
     } 
+    // else if (isShading) {
+    //     const currentColor = e.target.style.backgroundColor;
+    //     const currentRGB = currentColor.replace(/[^\d,]/g, '').split(',')
+        
+    //     if 
+    //     const currentHSL = []
+    // } 
     else {
         e.target.style.backgroundColor = colorSelector.value;
     }
@@ -126,19 +132,19 @@ eraserBtn.addEventListener('click', function(e) {
 })
 
 
-shadingBtn.addEventListener('click', function(e) {
-    if(!isShading) {
-        isShading = true;
-    } else {
-        isShading = false;
-    };
+// shadingBtn.addEventListener('click', function(e) {
+//     if(!isShading) {
+//         isShading = true;
+//     } else {
+//         isShading = false;
+//     };
 
-    if(isShading) {
-        e.target.classList.add('btn-toggle');
-    } else {
-        e.target.classList.remove('btn-toggle');
-    };
-})
+//     if(isShading) {
+//         e.target.classList.add('btn-toggle');
+//     } else {
+//         e.target.classList.remove('btn-toggle');
+//     };
+// })
 
 
 sizeSelector.addEventListener('input', function (e) {
