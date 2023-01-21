@@ -49,7 +49,13 @@ function etch(e) {
         return;
     } else if (isEraser) {
         e.target.style.backgroundColor = "var(--etch-background)";
-    } else {
+    } else if (isRainbow) {
+        const randomR = Math.floor(Math.random() * 256)
+        const randomG = Math.floor(Math.random() * 256)
+        const randomB = Math.floor(Math.random() * 256)
+        e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`
+    } 
+    else {
         e.target.style.backgroundColor = colorSelector.value;
     }
 }
