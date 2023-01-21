@@ -5,17 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
-    <title>Etch-a-Sketch</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito">
+    <title>ETCH-A-SKETCH</title>
 </head>
 <body>
-    <h1 class="main-title">Etch-a-Sketch</h1>
+    <h1 class="main-title">ETCH-A-SKETCH</h1>
     <div class="container">
         <div class="controls">
-            <h3 class="title">Options</h3>
-            <input type="range" class="size-selector" min="8" max="32" value=16> 
-            <div class="size-display">Side Length: <div></div></div>
-            <button id="refresh">Refresh</button>
-            <button id="reset">Reset</button>
+            <h2 class="title">Options</h2>
+            <div class="color-card">
+                <div class="color-picker"></div>
+                <p>Etch Color</p>
+            </div>
+            <button id="rainbow-btn">Toggle Rainbow</button>
+            <button id="eraser-btn">Toggle Eraser</button>
+            <button id="shading-btn">Toggle Shading</button>
+            
+            <input type="range" class="size-selector" min="8" max="32" value=12> 
+            <button id="clear-btn">Clear</button>
+            <button id="reset-btn">Reset</button>
         </div>
         <div class="grid" id="etch-a-sketch">
         </div>

@@ -1,13 +1,21 @@
 :root {
     --grid-length: 16;
-    --etch-color: black;
+    --dark-primary-color: hsl(0, 0%, 30%);
+    --primary-color: hsl(0, 0%, 47%);
+    --light-primary-color:hsl(0, 0%, 75%);
+    --secondary-color: #87cdd1;
+    --light-secondary-color: #88dbd3;
+    --etch-color: hsl(0, 0%, 13%);
+    --etch-background: #ffffff;
+    --background-color: hsl(0, 0%, 96%);
 }
 
 * {
-    border: 1px solid green;
+    font-family: Nunito;
 }
 
 body {
+    background-color: var(--background-color);
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -16,6 +24,9 @@ body {
 }
 
 .container {
+    background-color: var(--light-primary-color);
+    padding: 20px;
+    border-radius: 20px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -23,9 +34,9 @@ body {
 }
 
 .controls {
+    border-top-left-radius: 2;
     width: 20vw;
     min-width: 150px;
-    height: 150px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -38,6 +49,7 @@ body {
 }
 
 .grid {
+    border-radius: 2%;
     max-height: 70vh;
     max-width: 70vh;
     height: 60vw;
@@ -48,14 +60,39 @@ body {
 }
 
 .box {
-    /* border-radius: 12%; */
+    background-color: var(--etch-background);
     border: 0px;
 }
 
-.box:hover {
-    background-color: var(--etch-color);
+.box.top-left {
+    border-top-left-radius: calc(var(--grid-length)*2%);
 }
 
-.red-fill {
-    background-color: red;
+.box.top-right {
+    border-top-right-radius: calc(var(--grid-length)*2%);
+}
+
+.box.bottom-left {
+    border-bottom-left-radius: calc(var(--grid-length)*2%);
+}
+
+.box.bottom-right {
+    border-bottom-right-radius: calc(var(--grid-length)*2%);
+}
+
+p {
+    display: inline;
+}
+
+button {
+    padding: 5px;
+    margin: 10px;
+    width: 150px;
+    background-color: var(--primary-color);
+    color:hsl(0, 0%, 96%)
+}
+
+.btn-toggle {
+    background-color: var(--dark-primary-color);
+    box-shadow: black 2px;
 }
