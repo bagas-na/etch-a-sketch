@@ -5,7 +5,7 @@
     --light-primary-color:hsl(0, 0%, 75%);
     --secondary-color: #87cdd1;
     --light-secondary-color: #88dbd3;
-    --etch-color: hsl(0, 0%, 13%);
+    --etch-color: #212121;
     --etch-background: #ffffff;
     --background-color: hsl(0, 0%, 96%);
 }
@@ -44,6 +44,24 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.color-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.controls .color-card p {
+    margin: 0;
+}
+
+.controls .color-picker {
+    border: 0px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50px;
 }
 
 .controls p {

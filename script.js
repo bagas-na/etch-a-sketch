@@ -50,7 +50,7 @@ function etch(e) {
     } else if (isEraser) {
         e.target.style.backgroundColor = "var(--etch-background)";
     } else {
-        e.target.style.backgroundColor = "var(--etch-color)";
+        e.target.style.backgroundColor = colorSelector.value;
     }
 }
 
@@ -64,12 +64,8 @@ function createGrid(gridLength) {
 }
 
 const defaultGridSize = 12;
-let mouseDown = false;
-let isRainbow = false;
-let isEraser = false;
-let isShading = false;
-
 const sizeSelector = document.querySelector('.size-selector');
+const colorSelector = document.querySelector('.color-picker');
 const gridContainer = document.getElementById('etch-a-sketch');
 const CSSVariable = document.querySelector(':root');
 const gridSizeDisplay = document.querySelectorAll('.size-display');
@@ -78,10 +74,22 @@ const eraserBtn = document.getElementById('eraser-btn');
 const shadingBtn = document.getElementById('shading-btn');
 const clearBtn = document.getElementById('clear-btn');
 const resetBtn = document.getElementById('reset-btn');
+
 let gridBoxes = document.querySelectorAll('.grid > .box');
+let etchColor = colorSelector.value;
+let mouseDown = false;
+let isRainbow = false;
+let isEraser = false;
+let isShading = false;
+
 
 document.addEventListener('mousedown', () => {mouseDown = true;})
 document.addEventListener('mouseup', () => {mouseDown = false;})
+
+colorSelector.addEventListener('input', function (e) {
+    colorSelector.value = e.target.value;
+    // CSSVariable.style.setProperty('--etch-color', etchColor);
+}, {passive: true});
 
 rainbowBtn.addEventListener('click', function(e) {
     if(!isRainbow) {
