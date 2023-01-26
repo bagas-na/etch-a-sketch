@@ -22,9 +22,13 @@ function resizeGridTo(gridLength) {
 
 function boxProperty (box) {
     box.classList.add('box');
-    box.setAttribute('data-box', `${gridContainer.childElementCount+1}`)
+    box.setAttribute('data-box', `${gridContainer.childElementCount+1}`);
+    box.setAttribute('draggable', false);
     box.addEventListener('mouseover', etch, {passive: true})
-    gridContainer.appendChild(box);
+
+    if(showGrid) {
+        box.style.setProperty('border', '1px solid rgba(0, 0, 0, 10%)');
+    }
 }
 
 function setBoxBorder(gridLength) {
@@ -81,6 +85,7 @@ const colorSelector = document.querySelector('.color-picker');
 const gridContainer = document.getElementById('etch-a-sketch');
 const CSSVariable = document.querySelector(':root');
 const gridSizeDisplay = document.querySelectorAll('.size-display');
+const gridBtn = document.getElementById('grid-btn');
 const rainbowBtn = document.getElementById('rainbow-btn');
 const eraserBtn = document.getElementById('eraser-btn');
 const shadingBtn = document.getElementById('shading-btn');
@@ -90,6 +95,7 @@ const resetBtn = document.getElementById('reset-btn');
 let gridBoxes = document.querySelectorAll('.grid > .box');
 let etchColor = colorSelector.value;
 let mouseDown = false;
+let showGrid = true;
 let isRainbow = false;
 let isEraser = false;
 let isShading = false;
@@ -102,6 +108,26 @@ colorSelector.addEventListener('input', function (e) {
     colorSelector.value = e.target.value;
     // CSSVariable.style.setProperty('--etch-color', etchColor);
 }, {passive: true});
+
+gridBtn.addEventListener('click', function(e) {
+    if(!showGrid) {
+        showGrid = true;
+    } else {
+        showGrid = false;
+    };
+
+    if(showGrid) {
+        e.target.classList.add('btn-toggle');
+        gridBoxes.forEach((box) => {
+            box.style.setProperty('border', '1px solid rgba(0, 0, 0, 10%)');
+        })
+    } else {
+        e.target.classList.remove('btn-toggle');
+        gridBoxes.forEach((box) => {
+            box.style.setProperty('border', '0px');
+        })
+    };
+})
 
 rainbowBtn.addEventListener('click', function(e) {
     if(!isRainbow) {
